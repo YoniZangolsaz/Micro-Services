@@ -1,7 +1,4 @@
-/* eslint-disable prefer-destructuring */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 
 import axios from 'axios';
 
@@ -80,4 +77,3 @@ export const updateEndTime = async (req: Request, res: Response) => {
     res.status(500).json({ message: err.message });
   }
 };
-
