@@ -1,13 +1,14 @@
-// import express from 'express';
+import express from 'express';
+import * as trainerManager from './trainer.manager';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post('/', trainerController.postTrainer);
-// router.get('/', trainerController.getAllTrainer);
-// router.get('/:trainerId', trainerController.getTrainerByUserID);
-// router.delete('/:trainerId', trainerController.deleteTrainer);
-// router.patch('/age/:trainerId', trainerController.updateAge);
-// router.put('/class/:trainerId', trainerController.putClassInTrainer);
-// router.delete('/class/:trainerId', trainerController.deleteClassFromTrainer);
+router.post('/', trainerManager.postTrainer);
+router.get('/', trainerManager.getAllTrainer);
+router.get('/:trainerId', trainerManager.getTrainerByUserID);
+router.delete('/:trainerId', trainerManager.deleteTrainer);
+router.patch('/age/:trainerId', trainerManager.updateAge);
+router.put('/class/:trainerId', trainerManager.putClassInTrainer);
+router.delete('/class/:trainerId', trainerManager.deleteClassFromTrainer);
 
-// export default router;
+export default router;
