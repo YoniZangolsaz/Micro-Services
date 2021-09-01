@@ -1,19 +1,26 @@
+import * as dotenv from 'dotenv';
+
 import { Request, Response } from 'express';
 
 import axios from 'axios';
 
+dotenv.config();
+
+const PATH = process.env.PATH1;
 export const postTrainer = async (req: Request, res: Response) => {
   try {
-    const answer = await axios.post('http://localhost:3010/trainer', req.body);
+    const answer = await axios.post(`${PATH}/trainer`, req.body);
     res.send(answer.data);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
 
+console.log(`${PATH}/trainer`);
+
 export const getAllTrainer = async (req: Request, res: Response) => {
   try {
-    const answer = await axios.get('http://localhost:3010/trainer');
+    const answer = await axios.get(`${PATH}/trainer`);
     res.send(answer.data);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -22,9 +29,7 @@ export const getAllTrainer = async (req: Request, res: Response) => {
 
 export const getTrainerByUserID = async (req: Request, res: Response) => {
   try {
-    const answer = await axios.get(
-      `http://localhost:3010/trainer/${req.params.trainerId}`
-    );
+    const answer = await axios.get(`${PATH}/trainer/${req.params.trainerId}`);
     res.send(answer.data);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -34,7 +39,7 @@ export const getTrainerByUserID = async (req: Request, res: Response) => {
 export const deleteTrainer = async (req: Request, res: Response) => {
   try {
     const answer = await axios.delete(
-      `http://localhost:3010/trainer/${req.params.trainerId}`
+      `${PATH}/trainer/${req.params.trainerId}`
     );
     res.send(answer.data);
   } catch (err) {
@@ -45,7 +50,7 @@ export const deleteTrainer = async (req: Request, res: Response) => {
 export const updateAge = async (req: Request, res: Response) => {
   try {
     const answer = await axios.patch(
-      `http://localhost:3010/trainer/age/${req.params.trainerId}`,
+      `${PATH}/trainer/age/${req.params.trainerId}`,
       req.body
     );
     res.send(answer.data);
@@ -57,7 +62,7 @@ export const updateAge = async (req: Request, res: Response) => {
 export const putClassInTrainer = async (req: Request, res: Response) => {
   try {
     const answer = await axios.put(
-      `http://localhost:3010/trainer/class/${req.params.trainerId}`,
+      `${PATH}/trainer/class/${req.params.trainerId}`,
       req.body
     );
     res.send(answer.data);
@@ -69,7 +74,7 @@ export const putClassInTrainer = async (req: Request, res: Response) => {
 export const deleteClassFromTrainer = async (req: Request, res: Response) => {
   try {
     const answer = await axios.delete(
-      `http://localhost:3010/trainer/class/${req.params.trainerId}`,
+      `${PATH}/traine/class/${req.params.trainerId}`,
       req.body
     );
     res.send(answer.data);
