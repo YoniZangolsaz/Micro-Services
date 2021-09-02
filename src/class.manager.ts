@@ -1,10 +1,18 @@
+import * as dotenv from 'dotenv';
 import { Request, Response } from 'express';
-
 import axios from 'axios';
+import * as config from ./config
+
+dotenv.config();
+
+const APP = config.APP
+const PORTApp = config.PORTApp
+
+const PATH = `http://${APP}:${PORTApp}/class`;
 
 export const postClass = async (req: Request, res: Response) => {
   try {
-    const answer = await axios.post('http://localhost:3010/class', req.body);
+    const answer = await axios.post(PATH, req.body);
     res.send(answer.data);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -13,7 +21,7 @@ export const postClass = async (req: Request, res: Response) => {
 
 export const getClass = async (req: Request, res: Response) => {
   try {
-    const answer = await axios.get('http://localhost:3010/class');
+    const answer = await axios.get(PATH);
     res.send(answer.data);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -23,7 +31,7 @@ export const getClass = async (req: Request, res: Response) => {
 export const getClassByClassID = async (req: Request, res: Response) => {
   try {
     const answer = await axios.get(
-      `http://localhost:3010/class/${req.params.classId}`
+      `${PATH}/${req.params.classId}`
     );
     res.send(answer.data);
   } catch (err) {
@@ -34,7 +42,7 @@ export const getClassByClassID = async (req: Request, res: Response) => {
 export const deleteClass = async (req: Request, res: Response) => {
   try {
     const answer = await axios.delete(
-      `http://localhost:3010/class/${req.params.classId}`
+      `${PATH}/${req.params.classId}`
     );
     res.send(answer.data);
   } catch (err) {
@@ -45,7 +53,7 @@ export const deleteClass = async (req: Request, res: Response) => {
 export const updateClassName = async (req: Request, res: Response) => {
   try {
     const answer = await axios.patch(
-      `http://localhost:3010/class/name/${req.params.classId}`,
+      `${PATH}/name/${req.params.classId}`,
       req.body
     );
     res.send(answer.data);
@@ -57,7 +65,7 @@ export const updateClassName = async (req: Request, res: Response) => {
 export const updateStartTime = async (req: Request, res: Response) => {
   try {
     const answer = await axios.patch(
-      `http://localhost:3010/class/starttime/${req.params.classId}`,
+      `${PATH}/starttime/${req.params.classId}`,
       req.body
     );
     res.send(answer.data);
@@ -69,7 +77,7 @@ export const updateStartTime = async (req: Request, res: Response) => {
 export const updateEndTime = async (req: Request, res: Response) => {
   try {
     const answer = await axios.patch(
-      `http://localhost:3010/class/endtime/${req.params.classId}`,
+      `${PATH}/endtime/${req.params.classId}`,
       req.body
     );
     res.send(answer.data);

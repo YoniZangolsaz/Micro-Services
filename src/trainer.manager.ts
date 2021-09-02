@@ -1,12 +1,14 @@
 import * as dotenv from 'dotenv';
-
 import { Request, Response } from 'express';
-
 import axios from 'axios';
+import * as config from ./config
 
 dotenv.config();
 
-const PATH = `http://app:3010/trainer`;
+const APP = config.APP
+const PORTApp = config.PORTApp
+
+const PATH = `http://${APP}:${PORTApp}/trainer`;
 export const postTrainer = async (req: Request, res: Response) => {
   try {
     const answer = await axios.post(PATH, req.body);
