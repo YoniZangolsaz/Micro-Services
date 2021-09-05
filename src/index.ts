@@ -1,7 +1,6 @@
-import * as config from './config';
-
 import express from 'express';
 import morgan from 'morgan';
+import * as config from './config';
 import trainerRouter from './trainer.router';
 import classRouter from './class.router';
 
